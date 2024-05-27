@@ -1,3 +1,8 @@
+prompt PL/SQL Developer Export Tables for user EWEKSLER@LABDBWIN
+prompt Created by eweksler on ιεν ωπι 27 ξΰι 2024
+set feedback off
+set define off
+
 prompt Creating ACCESSORIES...
 create table ACCESSORIES
 (
@@ -167,20 +172,20 @@ alter table TREATMENT disable all triggers;
 prompt Disabling triggers for TREATMENTTYPE...
 alter table TREATMENTTYPE disable all triggers;
 prompt Disabling foreign key constraints for PET...
-alter table PET disable constraint SYS_C00710877;
+alter table PET disable constraint SYS_C00711501;
 prompt Disabling foreign key constraints for VET...
-alter table VET disable constraint SYS_C00710894;
+alter table VET disable constraint SYS_C00711518;
 prompt Disabling foreign key constraints for APPOINTMENT...
-alter table APPOINTMENT disable constraint SYS_C00710915;
-alter table APPOINTMENT disable constraint SYS_C00710916;
+alter table APPOINTMENT disable constraint SYS_C00711539;
+alter table APPOINTMENT disable constraint SYS_C00711540;
 prompt Disabling foreign key constraints for SECRETARY...
-alter table SECRETARY disable constraint SYS_C00710888;
+alter table SECRETARY disable constraint SYS_C00711512;
 prompt Disabling foreign key constraints for SELL...
-alter table SELL disable constraint SYS_C00710907;
-alter table SELL disable constraint SYS_C00710908;
+alter table SELL disable constraint SYS_C00711531;
+alter table SELL disable constraint SYS_C00711532;
 prompt Disabling foreign key constraints for TREATMENTTYPE...
-alter table TREATMENTTYPE disable constraint SYS_C00710925;
-alter table TREATMENTTYPE disable constraint SYS_C00710926;
+alter table TREATMENTTYPE disable constraint SYS_C00711544;
+alter table TREATMENTTYPE disable constraint SYS_C00711545;
 prompt Deleting TREATMENTTYPE...
 delete from TREATMENTTYPE;
 commit;
@@ -8304,20 +8309,20 @@ values (392, 279);
 commit;
 prompt 399 records loaded
 prompt Enabling foreign key constraints for PET...
-alter table PET enable constraint SYS_C00710877;
+alter table PET enable constraint SYS_C00711501;
 prompt Enabling foreign key constraints for VET...
-alter table VET enable constraint SYS_C00710894;
+alter table VET enable constraint SYS_C00711518;
 prompt Enabling foreign key constraints for APPOINTMENT...
-alter table APPOINTMENT enable constraint SYS_C00710915;
-alter table APPOINTMENT enable constraint SYS_C00710916;
+alter table APPOINTMENT enable constraint SYS_C00711539;
+alter table APPOINTMENT enable constraint SYS_C00711540;
 prompt Enabling foreign key constraints for SECRETARY...
-alter table SECRETARY enable constraint SYS_C00710888;
+alter table SECRETARY enable constraint SYS_C00711512;
 prompt Enabling foreign key constraints for SELL...
-alter table SELL enable constraint SYS_C00710907;
-alter table SELL enable constraint SYS_C00710908;
+alter table SELL enable constraint SYS_C00711531;
+alter table SELL enable constraint SYS_C00711532;
 prompt Enabling foreign key constraints for TREATMENTTYPE...
-alter table TREATMENTTYPE enable constraint SYS_C00710925;
-alter table TREATMENTTYPE enable constraint SYS_C00710926;
+alter table TREATMENTTYPE enable constraint SYS_C00711544;
+alter table TREATMENTTYPE enable constraint SYS_C00711545;
 prompt Enabling triggers for ACCESSORIES...
 alter table ACCESSORIES enable all triggers;
 prompt Enabling triggers for PETOWNER...
@@ -8338,3 +8343,7 @@ prompt Enabling triggers for TREATMENT...
 alter table TREATMENT enable all triggers;
 prompt Enabling triggers for TREATMENTTYPE...
 alter table TREATMENTTYPE enable all triggers;
+
+set feedback on
+set define on
+prompt Done
