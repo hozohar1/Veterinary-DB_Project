@@ -4,7 +4,7 @@ Version=1
 
 [Preferences]
 Username=
-Password=2379
+Password=2292
 Database=
 DateFormat=
 CommitCount=0
@@ -12,7 +12,7 @@ CommitDelay=0
 InitScript=
 
 [Table]
-Owner=EWEKSLER
+Owner=HOZOHAR
 Name=SELL
 Count=400
 
@@ -20,13 +20,13 @@ Count=400
 Name=ACCID
 Type=NUMBER
 Size=
-Data=Random(0, 9999999)
+Data=List(select AccId from Accessories)
 Master=
 
 [Record]
 Name=SID
 Type=NUMBER
 Size=
-Data=Random(0, 9999999)
+Data=List(select sID from Secretary)
 Master=
 
