@@ -11,16 +11,16 @@ ERD:
 DSD:
 ![dsd](https://github.com/Efrat-W/Vet-Clinic/assets/116486421/98658db6-e2e1-4a80-999e-1cfe75e0ad19)
 
-# תיאור תרשים
+## תיאור תרשים
 
-## Staff
+### Staff
 **ישות: איש צוות**
 - **sName**: שם של איש צוות
 - **sID**: מספר מזהה ת"ז של איש צוות
 
 תיאור: הישויות וטרינר ומזכירה יורשות מהישות של איש צוות.
 
-## Vet
+### Vet
 **ישות: וטרינר**
 - **sName**: שם של איש צוות
 - **sID**: מספר מזהה ת"ז של איש צוות
@@ -28,7 +28,7 @@ DSD:
 - **vStartYear**: שנת התחלה
 - **vRank**: דרגה
 
-## Secretary
+### Secretary
 **ישות: מזכירה**
 - **sName**: שם של איש צוות
 - **sID**: מספר מזהה ת"ז של איש צוות
@@ -37,35 +37,35 @@ DSD:
 - **secIsSeller**: שדה בוליאני ליכולתה למכור
 
 תיאור: היא נמצאת ביחס עם הישות אקססוריז שבה מצויינים פריטים שהמרפאה מוכרת.
-## Sell
+### Sell
 **ישות: מכירה**
 - **AccID**: מספר מזהה של מוצר
 - **sID**: מספר מזהה ת"ז של מזכירה
 
-## Accessories
+### Accessories
 **ישות: אקססוריז**
 - **AccPrice**: מחיר פריט
 - **AccId**: מספר מזהה של פריט
 
-## Appointment
+### Appointment
 **ישות: ביקור**
 - **AppDate**: תאריך
 - **AppID**: מספר מזהה
 - **AppCost**: עלות
 
-## Treatment
+### Treatment
 **ישות: טיפול**
 - **tID**: מספר מזהה
 - **TName**: שם טיפול
 - **Tprice**: עלות
 - **Tduration**: זמן
   
-## TreatmentType
+### TreatmentType
 **ישות: סוג טיפול**
 - **tID**: מספר מזהה של טיפול
 - **appID**: מספר מזהה של ביקור
 
-## Pet
+### Pet
 **ישות: חייה מטופלת**
 - **petName**: שם
 - **petId**: מספר מזהה
@@ -73,7 +73,7 @@ DSD:
 - **petGender**: מין
 - **petAge**: שנת לידה
 
-## PetOwner
+### PetOwner
 **ישות: בעלים של החייה המטופלת**
 - **ownerID**: ת"ז
 - **ownerName**: שם
@@ -85,15 +85,15 @@ desc:
 ![desc1](screenshots/desc%20(1).png)
 ![desc2](screenshots/desc%20(2).png)
 
-# טבלאות לפי שיטות הכנסה שונות:
+## טבלאות לפי שיטות הכנסה שונות:
   
-## text import
+### text import
 PetOwner:
   
 ![textimp1](screenshots/textimport.png)
 ![textimp2](screenshots/textimportresult.png)
 
-## data generator
+### data generator
 Accessories:
 
 ![dg1](screenshots/dg%20(1).jpeg)
@@ -123,7 +123,7 @@ Treatment Type:
 Treatment:
 ![treat1](screenshots/treat%20(1).jpeg)
 
-## python generated sql
+### python generated sql
 Pet:
 ![pet1](screenshots/pet%20(1).png)
 ![pet2](screenshots/pet%20(2).png)
@@ -132,7 +132,7 @@ Staff:
 ![s1](screenshots/staff%20(1).png)
 ![s2](screenshots/staff%20(2).png)
 
-## Backup
+### Backup
 ![q1](screenshots/2/גיבוי.png)
 
 
