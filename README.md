@@ -140,53 +140,53 @@ Staff:
 ## Select Queries
 ### Without parameters
 החזרת מידע על כל המזכירות המוכרות, המוצר שהן מוכרות ופרטי תקשורת איתן
-![q1](screenshots/2/query%20(1).png)
+![q1](screenshots/2/query%20(1).jpeg)
 
 סכום עלות כל הטיפולים של בעלי החיה עבור על חיית מחמד שלו
-![q2](screenshots/2/query%20(2).png)
+![q2](screenshots/2/query%20(2).jpeg)
 
 סוג הטיפול עבור כל חיית מחמד, התאריך והוטרינר המטפל
-![q1](screenshots/2/query%20(3).png)
+![q1](screenshots/2/query%20(3).jpeg)
 
 מספר הביקורים שנקבעו אצל כל וטרינר
-![q2](screenshots/2/query%20(4).png)
+![q2](screenshots/2/query%20(4).jpeg)
 
 ### With parameters
 החזרת פרטי בעלים מסויים, חיות המחמד שלו שצריכות לעבור טיפול מסויים ומתי התור שלהן.
-![p1](screenshots/2/params%20(1).png)
+![p1](screenshots/2/params%20(1).jpeg)
 
 "קבלה" על קניית המוצרים, והסכום הכולל של הקניה
-![p2](screenshots/2/params%20(2).png)
+![p2](screenshots/2/params%20(2).jpeg)
 
 החזרת פרטי כל חיות המחמד שיש להן ביקור עם הוטרינר המסויים
-![p1](screenshots/2/params%20(3).png)
+![p1](screenshots/2/params%20(3).jpeg)
 
 החזרת כל הוטרינרים שיש חיות מחמד אצלם בביקור בין התאריכים המסויימים
-![p2](screenshots/2/params%20(4).png)
+![p2](screenshots/2/params%20(4).jpeg)
 
 ## Delete Queries
 הסרת תמיכת הוטרינריה בטיפולים בדגי קרב (בטא).
 זה כולל הסרת הטיפולים המיוחדים להם, ביטול התורים לדגים אלו, והסרת הדגים מרשימת המטופלים.
 - לפני:
-![d1](screenshots/2/del1%20(1).png)
+![d1](screenshots/2/del1%20(1).jpeg)
 - אחרי:
-![d2](screenshots/2/del1%20(2).png)
+![d2](screenshots/2/del1%20(2).jpeg)
 
 הסרת כל המזון הרטוב (wet food).
 - לפני:
-![del1](screenshots/2/del2%20(2).png)
+![del1](screenshots/2/del2%20(2).jpeg)
 - אחרי:
-![del2](screenshots/2/del2%20(1).png)
+![del2](screenshots/2/del2%20(1).jpeg)
 
 ## Update Queries
 דחיית כל התורים שבשנת 2023 לשנת 2024.
 - לפני:
-![up1](screenshots/2/update1%20(2).png)
+![up1](screenshots/2/update1%20(2).jpeg)
 - אחרי:
-![up2](screenshots/2/update1%20(1).png)
+![up2](screenshots/2/update1%20(1).jpeg)
 
 הנחה על כל מוצרי האוכל, אותו מאפשרות רק מזכירות לא-מתחילות.
 - לפני:
-![update1](screenshots/2/update2%20(2).png)
+![update1](screenshots/2/update2%20(2).jpeg)
 - אחרי:
-![update2](screenshots/2/update2%20(1).png)
+![update2](screenshots/2/update2%20(1).jpeg)
