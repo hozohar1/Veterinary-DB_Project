@@ -1,4 +1,7 @@
 # וטרינריה
+
+# שלב 1
+
 הוטרנריה מקבלת חיות מחמד לביקורים אצל הוטרינר, לבדיקות ולטיפולים שונים. אפשר לקנות מוצרים נוספים אצל המזכירות.
   הארגון דואג לאגד את כל הנתונים הנצרכים על מנת שהטיפול יתבצע בצורה היעילה ביותר.
 
@@ -77,20 +80,21 @@ DSD:
 - **ownerAddress**: כתובת
 - **ownerContactInfo**: פרטי קשר
 
-
 desc:
 
 ![desc1](screenshots/desc%20(1).png)
 ![desc2](screenshots/desc%20(2).png)
 
-טבלאות לפי שיטות הכנסה שונות:
+# טבלאות לפי שיטות הכנסה שונות:
   
-PetOwner (text import):
+## text import
+PetOwner:
   
 ![textimp1](screenshots/textimport.png)
 ![textimp2](screenshots/textimportresult.png)
 
-Accessories (data generator):
+## data generator
+Accessories:
 
 ![dg1](screenshots/dg%20(1).jpeg)
 ![dg2](screenshots/dg%20(2).jpeg)
@@ -119,10 +123,14 @@ Treatment Type:
 Treatment:
 ![treat1](screenshots/treat%20(1).jpeg)
 
-Pet (python generated sql):
+## python generated sql
+Pet:
 ![pet1](screenshots/pet%20(1).png)
 ![pet2](screenshots/pet%20(2).png)
 
 Staff:
 ![s1](screenshots/staff%20(1).png)
 ![s2](screenshots/staff%20(2).png)
+
+
+# שלב 2
