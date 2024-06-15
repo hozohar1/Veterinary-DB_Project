@@ -73,7 +73,7 @@ WHERE petId IN (SELECT petId FROM Pet WHERE petSpecies = 'Betta');
 DELETE FROM Pet
 WHERE petSpecies = 'Betta';
 
--- delete wet food
+-- Delete wet food
 DELETE FROM sell
 WHERE AccId IN (
   SELECT AccId
@@ -84,10 +84,21 @@ DELETE FROM Accessories
 WHERE AccName = 'wet food';
 
 -- UPDATE QUERIES --
---
+-- Postpone all appointments in 2023 to 2024
 UPDATE Appointment
 SET AppDate = '2024-01-01'
 WHERE TODATE(AppDate, '%Y') = '2023';
+
+-- Discount on wet and dry food sold by higher ranking secretaries
+UPDATE Accessories
+SET AccPrice = AccPrice * 0.8
+WHERE AccName IN ('wet food', 'dry food')
+AND AccID IN (
+    SELECT AccId
+    FROM sell
+    JOIN Secretary ON sell.sID = Secretary.sID
+    WHERE Secretary.SecRank > 2
+);
 
 
 
