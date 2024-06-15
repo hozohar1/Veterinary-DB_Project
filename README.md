@@ -1,4 +1,9 @@
 # וטרינריה
+## תוכן עניינים
+
+- [שלב 1](#שלב-1)
+
+- [שלב 2](#שלב-2)
 
 # שלב 1
 
@@ -190,3 +195,10 @@ Staff:
 ![update1](screenshots/2/update2%20(2).jpeg)
 - אחרי:
 ![update2](screenshots/2/update2%20(1).jpeg)
+
+
+## Constraints queries
+- אילוץ: מחיר מוצר יהיה מ0 ומעלה, לא שלילי.
+![const1](screenshots/2/constraint1.png)
+- אילוץ: שם בעלים חייב להיות קיים ולא נאל.
+![const2](screenshots/2/constraint2.png)
