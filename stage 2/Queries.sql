@@ -86,8 +86,8 @@ WHERE AccName = 'wet food';
 -- UPDATE QUERIES --
 -- Postpone all appointments in 2023 to 2024
 UPDATE Appointment
-SET AppDate = '2024-01-01'
-WHERE TODATE(AppDate, '%Y') = '2023';
+SET AppDate = TO_DATE('2024' || SUBSTR(TO_CHAR(AppDate, 'YYYY-MM-DD'), 5), 'YYYY-MM-DD')
+WHERE TO_CHAR(AppDate, 'YYYY') = '2023';
 
 -- Discount on wet and dry food sold by higher ranking secretaries
 UPDATE Accessories
