@@ -1,9 +1,16 @@
 # וטרינריה
 ## תוכן עניינים
 
-- [שלב 1](#שלב-1)
-
-- [שלב 2](#שלב-2)
+1. [שלב 1](#שלב-1)
+   - [ERD](#ERD)
+   - [DSD](#DSD)
+   - [תיאור תרשים](#תיאור-תרשים)
+   - [טבלאות לפי שיטות הכנסה שונות](#טבלאות-לפי-שיטות-הכנסה-שונות)
+2. [שלב 2](#שלב-2)
+   - [Select Queries](#select-queries)
+   - [Delete Queries](#delete-queries)
+   - [Update Queries](#update-queries)
+   - [Constraints queries](#constraints-queries)
 
 # שלב 1
 
@@ -198,6 +205,7 @@ Staff:
 
 
 ## Constraints queries
+- אילוץ: ברירת מחדל עבור מזכירה היא "לא" מוכרת.
 - אילוץ: מחיר מוצר יהיה מ0 ומעלה, לא שלילי.
 ![const1](screenshots/2/constraint1.png)
 - אילוץ: שם בעלים חייב להיות קיים ולא נאל.
