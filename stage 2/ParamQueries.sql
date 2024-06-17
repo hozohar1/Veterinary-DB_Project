@@ -49,6 +49,6 @@ WHERE
 -- Show all details about chosen owners from the multiselect list
 SELECT * FROM PetOwner WHERE ownerID IN
 (&<name="owner_id"
-list="SELECT ownerID, ownerName FROM PetOwner ORDER BY ownerName"
+list="SELECT ownerID, ownerName FROM PetOwner"
 description="yes"
 multiselect="yes">);
