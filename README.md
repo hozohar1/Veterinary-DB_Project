@@ -165,16 +165,19 @@ Staff:
 
 ### With parameters
 החזרת פרטי בעלים מסויים, חיות המחמד שלו שצריכות לעבור טיפול מסויים ומתי התור שלהן.
-![p1](screenshots/2/params%20(1).jpeg)
+![p1](screenshots/2/paramQ%20(3).jpeg)
 
 "קבלה" על קניית המוצרים, והסכום הכולל של הקניה
 ![p2](screenshots/2/params%20(2).jpeg)
 
 החזרת פרטי כל חיות המחמד שיש להן ביקור עם הוטרינר המסויים
-![p1](screenshots/2/params%20(3).jpeg)
+![p1](screenshots/2/paramQ%20(2).jpeg)
 
 החזרת כל הוטרינרים שיש חיות מחמד אצלם בביקור בין התאריכים המסויימים
 ![p2](screenshots/2/params%20(4).jpeg)
+
+החזר את כל פרטי הקשר עם בעלים לפי בחירת שמות בשיטת checklist
+![p1](screenshots/2/paramQ%20(1).jpeg)
 
 ## Delete Queries
 הסרת תמיכת הוטרינריה בטיפולים בדגי קרב (בטא).
