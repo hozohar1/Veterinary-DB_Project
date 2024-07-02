@@ -402,11 +402,14 @@ BEGIN
 END;
 ```
 הרצה:
+
 ![run1](screenshots/3/run22.png)
 תוצאה:
+
 ![run1.0](screenshots/3/run1.png)
 ![run1.1](screenshots/3/run11.png)
 חריגה:
+
 ![run1](screenshots/3/exceptionhandled.png)
 
 ### Update Cost and Display Total
@@ -443,10 +446,14 @@ EXCEPTION
 END;
 ```
 הרצה:
+
 ![run2](screenshots/3/run2.png)
 - לפני
+
 ![before](screenshots/3/before.png)
 - אחרי
+
 ![after](screenshots/3/after.png)
+
 - השינוי בבסיס הנתונים:
 ![updatedDB](screenshots/3/updatedDB.png)
