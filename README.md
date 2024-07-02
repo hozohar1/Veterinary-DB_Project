@@ -259,3 +259,124 @@ EXCEPTION
         RETURN NULL;
 END;
 ```
+
+החזר את הביקורים של חיות המחמד של בעלים מסויים
+```sql
+CREATE OR REPLACE FUNCTION get_owner_appointments(p_owner_id INTEGER)
+RETURN SYS_REFCURSOR
+IS
+    v_owner_id PetOwner.ownerID%TYPE;
+    v_ref_cursor SYS_REFCURSOR;
+BEGIN
+    SELECT ownerID
+    INTO v_owner_id
+    FROM PetOwner
+    WHERE ownerid = p_owner_id;
+
+    OPEN v_ref_cursor FOR
+        SELECT AppID, AppDate, AppCost
+        FROM Appointment a
+        WHERE EXISTS (
+            SELECT 1
+            FROM Pet p
+            WHERE p.petId = a.petId
+            AND p.ownerID = v_owner_id
+        );
+
+    RETURN v_ref_cursor;
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('Owner of id ' || p_owner_id || ' not found.');
+        RETURN NULL;
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
+        RETURN NULL;
+END;
+```
+
+מספר החיות בוטרינריה מזן מסויים
+```sql
+
+CREATE OR REPLACE FUNCTION get_pet_count_by_species(p_species VARCHAR2)
+RETURN NUMBER
+IS
+    v_count NUMBER;
+    CURSOR pet_cursor IS
+        SELECT COUNT(*) as pet_count
+        FROM Pet
+        WHERE petSpecies = p_species;
+BEGIN
+    OPEN pet_cursor;
+    FETCH pet_cursor INTO v_count;
+    CLOSE pet_cursor;
+    
+    RETURN v_count;
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
+        RETURN NULL;
+END;
+```
+
+## Procedures
+עדכן מחיר לביקור מסויים
+```sql
+
+CREATE OR REPLACE PROCEDURE update_appointment_cost(p_app_id IN NUMBER, p_new_cost IN NUMBER)
+IS
+    v_pet_id NUMBER;
+    v_owner_name VARCHAR2(30);
+BEGIN
+    -- Get pet ID and owner name for the appointment
+    SELECT a.petId, o.ownerName
+    INTO v_pet_id, v_owner_name
+    FROM Appointment a
+    JOIN Pet p ON a.petId = p.petId
+    JOIN PetOwner o ON p.ownerID = o.ownerID
+    WHERE a.AppID = p_app_id;
+
+    -- Update appointment cost
+    UPDATE Appointment
+    SET AppCost = p_new_cost
+    WHERE AppID = p_app_id;
+
+    -- Output information
+    DBMS_OUTPUT.PUT_LINE('Updated appointment cost for Pet ID: ' || v_pet_id);
+    DBMS_OUTPUT.PUT_LINE('Owner Name: ' || v_owner_name);
+    DBMS_OUTPUT.PUT_LINE('New Cost: ' || p_new_cost);
+
+EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('Appointment not found.');
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
+END;
+```
+
+הצג פרטי כל התורות של חיות בעלים מסויים ואת המחיר הכולל
+```sql
+CREATE OR REPLACE PROCEDURE display_owner_appointments(p_owner_id INTEGER)
+IS
+    v_app_id Appointment.AppID%TYPE;
+    v_app_date Appointment.AppDate%TYPE;
+    v_app_cost Appointment.AppCost%TYPE;
+    v_ref_cursor SYS_REFCURSOR;
+BEGIN
+    v_ref_cursor := get_owner_appointments(p_owner_id);
+
+    IF v_ref_cursor IS NOT NULL THEN
+        LOOP
+            FETCH v_ref_cursor INTO v_app_id, v_app_date, v_app_cost;
+            EXIT WHEN v_ref_cursor%NOTFOUND;
+            DBMS_OUTPUT.PUT_LINE('Appointment ID: ' || v_app_id || ', Date: ' || TO_CHAR(v_app_date, 'YYYY-MM-DD') || ', Cost: ' || v_app_cost);
+        END LOOP;
+        
+        CLOSE v_ref_cursor;
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('No appointments found for owner of id ' || p_owner_id);
+    END IF;
+EXCEPTION
+    WHEN OTHERS THEN
+        DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
+END;
+```
