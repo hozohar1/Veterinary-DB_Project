@@ -401,8 +401,13 @@ BEGIN
         DBMS_OUTPUT.PUT_LINE('');    
 END;
 ```
-
-
+הרצה:
+![run1](screenshots/3/run22.png)
+תוצאה:
+![run1.0](screenshots/3/run1.png)
+![run1.1](screenshots/3/run11.png)
+חריגה:
+![run1](screenshots/3/exceptionhandled.png)
 
 ### Update Cost and Display Total
 החזר מספר החיות בוטרינריה מזן מסויים, עדכן מחיר של תור מסויים, וחשב את הסכום הכללי שיעלה לבעלים בעקבות השינוי.
@@ -438,10 +443,10 @@ EXCEPTION
 END;
 ```
 הרצה:
-[run2](screenshots/3/run2.png)
+![run2](screenshots/3/run2.png)
 - לפני
-[before](screenshots/3/before.png)
+![before](screenshots/3/before.png)
 - אחרי
-[after](screenshots/3/after.png)
+![after](screenshots/3/after.png)
 - השינוי בבסיס הנתונים:
-[updatedDB](screenshots/3/updatedDB.png)
+![updatedDB](screenshots/3/updatedDB.png)
