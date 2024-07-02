@@ -457,3 +457,6 @@ END;
 
 - השינוי בבסיס הנתונים:
 ![updatedDB](screenshots/3/updatedDB.png)
+
+חריגת התוכנית בהרצה עם משתנה מסוג לא נכון:
+![exception1](screenshots/3/exception.jpeg)
