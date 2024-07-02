@@ -21,4 +21,3 @@ EXCEPTION
     WHEN OTHERS THEN
         DBMS_OUTPUT.PUT_LINE('An error occurred in the main program: ' || SQLERRM);
 END;
-/

@@ -1,24 +1,35 @@
-CREATE OR REPLACE PROCEDURE main_program
+CREATE OR REPLACE FUNCTION calculate_total_cost(p_owner_id INTEGER)
+RETURN NUMBER
 IS
-    v_dog_count NUMBER;
-    v_appointment_id NUMBER := 1; -- Assuming this appointment exists
-    v_new_cost NUMBER := 500;
-    v_owner_id NUMBER := 1; -- Replace with an existing owner ID for testing
-    v_total_cost NUMBER;
+    v_owner_id PetOwner.ownerID%TYPE;
+    v_total_cost NUMBER := 0;
 BEGIN
-    -- Call function to get count of dogs
-    v_dog_count := get_pet_count_by_species('Dog');
-    DBMS_OUTPUT.PUT_LINE('Number of dogs: ' || v_dog_count);
+    -- Check if owner exists
+    SELECT ownerID
+    INTO v_owner_id
+    FROM PetOwner
+    WHERE ownerid = p_owner_id;
 
-    -- Call procedure to update appointment cost
-    update_appointment_cost(v_appointment_id, v_new_cost);
+    -- Cursor to fetch appointments for the owner
+    FOR appointment_rec IN (
+        SELECT AppCost
+        FROM Appointment a
+        WHERE EXISTS (
+            SELECT 1
+            FROM Pet p
+            WHERE p.petId = a.petId
+            AND p.ownerID = v_owner_id
+        )
+    ) LOOP
+        v_total_cost := v_total_cost + appointment_rec.AppCost;
+    END LOOP;
 
-    -- Call function to calculate total cost using calculate_total_cost function
-    v_total_cost := calculate_total_cost(v_owner_id);
-    DBMS_OUTPUT.PUT_LINE('Total cost for Owner ID ' || v_owner_id || ': ' || v_total_cost);
-
+    RETURN v_total_cost;
 EXCEPTION
+    WHEN NO_DATA_FOUND THEN
+        DBMS_OUTPUT.PUT_LINE('Owner of id ' || p_owner_id || ' not found.');
+        RETURN 0;
     WHEN OTHERS THEN
-        DBMS_OUTPUT.PUT_LINE('An error occurred in the main program: ' || SQLERRM);
+        DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
+        RETURN NULL;
 END;
-/
