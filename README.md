@@ -14,7 +14,7 @@
 3. [שלב 3](#שלב-3)
    - [Functions](#functions)
    - [Procedures](#procedures)
-   - [Main programs](#mains)
+   - [Main programs](#main-programs)
 
 # שלב 1
 
@@ -353,7 +353,7 @@ EXCEPTION
 END;
 ```
 
-הצג פרטי כל התורות של חיות בעלים מסויים ואת המחיר הכולל
+הצג פרטי כל התורות של חיות בעלים מסויים
 ```sql
 CREATE OR REPLACE PROCEDURE display_owner_appointments(p_owner_id INTEGER)
 IS
@@ -380,3 +380,27 @@ EXCEPTION
         DBMS_OUTPUT.PUT_LINE('An error occurred: ' || SQLERRM);
 END;
 ```
+
+## Main Programs
+הצג את פרטי כל התורות עבור חיות המחמד של בעלים מסויים, ואת הסכום הכולל
+```sql
+DECLARE
+id1 petowner.ownerid%TYPE;
+total INTEGER;
+BEGIN
+  id1 := 1200;
+  total := 0;
+    DBMS_OUTPUT.PUT_LINE('Appointments for Owner ID ' || id1 || ':');
+    DBMS_OUTPUT.PUT_LINE('');
+    display_owner_appointments(id1); -- procedure call
+    DBMS_OUTPUT.PUT_LINE('');
+
+    total := calculate_total_cost(id1); -- function call
+    DBMS_OUTPUT.PUT_LINE('Total cost: ' || total);
+        DBMS_OUTPUT.PUT_LINE('');    
+END;
+```
+
+החזר מספר החיות בוטרינריה מזן מסויים, עדכן מחיר של תור מסויים, וחשב את הסכום הכללי שיעלה לבעלים בעקבות השינוי.
+```sql
+[text](<stage 3/update_appointment_cost.prc>)
