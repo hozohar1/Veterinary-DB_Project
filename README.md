@@ -460,3 +460,22 @@ END;
 
 חריגת התוכנית בהרצה עם משתנה מסוג לא נכון:
 ![exception1](screenshots/3/exception.jpeg)
+
+# שלב 4
+## new ERD and DSD diagrams
+### ERD
+[erd1](stage%204/newERD.png)
+[erd2](stage%204/mergedERD.png)
+### DSD
+[dsd1](stage%204/oldDSD.png)
+[dsd2](stage%204/mergedDSD.png)
+
+## החלטות בשלב האינטגרציה
+1. החלטנו למזג את PETOWNER וTRAVELERS לטבלה אחת PETOWNER הקיימת.
+   הוספנו לה את התכונה YEAR_OF_BIRTH שהייתה בטבלת המטיילים,
+   את התכונות של הת.ז. והשם של המטיילים הכנסו לבעלי החיות בהתאם.
+2. החלטנו שGUARD יירש מSTAFF.
+   את התכונות ת.ז. ושם של הGUARD הכנסו לטבלת הצוות בהתאם,
+   ודאגנו לקשר ירושה ע"י FOREIGN KEY לפי הת.ז.
+בהתנגשויות של ID דרסנו את הNAME לפי השם מהנתונים של האגף החדש.
+
