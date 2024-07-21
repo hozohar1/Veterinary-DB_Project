@@ -464,11 +464,11 @@ END;
 # שלב 4
 ## new ERD and DSD diagrams
 ### ERD
-[erd1](stage%204/newERD.png)
-[erd2](stage%204/mergedERD.png)
+![erd1](stage%204/newERD.png)
+![erd2](stage%204/combinedERD.png)
 ### DSD
-[dsd1](stage%204/oldDSD.png)
-[dsd2](stage%204/mergedDSD.png)
+![dsd1](stage%204/oldDSD.png)
+![dsd2](stage%204/combinedDSD.png)
 
 ## החלטות בשלב האינטגרציה
 1. החלטנו למזג את PETOWNER וTRAVELERS לטבלה אחת PETOWNER הקיימת.
