@@ -19,8 +19,11 @@
    - [Main programs](#main-programs)
 
 4. [שלב 4](#שלב-4)
-   - [ERD & DSD](#ERD)
-   - [Integration decisions](#החלטות-בשלב-האינטגרציה)
+    - [ERD & DSD](#ERD)
+    - [Integration decisions](#החלטות-בשלב-האינטגרציה)
+    - [קוד האינטגרציה](#קוד-האינטגרציה)
+    - [מבטים](#מבטים)
+    - [שאילתות](#שאילתות)
 
 # שלב 1
 
@@ -490,14 +493,149 @@ END;
     - בהתנגשויות של ID, השם (NAME) עודכן בהתאם לשם מהנתונים של האגף החדש.
 
 
-## הסבר על תהליך האינטגרציה
+## קוד האינטגרציה
+```sql
 
+--GUARD modifications--
+allow null in staff sbirthdate
+alter table staff modify (sbirthdate date null);
+
+--merge guard details into staff
+merge into staff s using guard g
+on (s.sID = g.id_guard)
+when matched then
+     update set s.sname = g.name
+when not matched then
+  insert (sid, sname, sbirthdate)
+  values (g.id_guard, g.name, null);
+
+--add id constraint to be from staff table
+alter table guard 
+      add constraint fk_id foreign key (id_guard)
+      references staff (sid);
+      
+--remove redundant attribute
+alter table guard drop column name;
+
+--END--
+-------------------------------------
+
+--TRAVELER PETOWNER modifications--
+add traveler yearofbirth column to petowner
+alter table petowner add (year_of_birth number);
+
+--merge traveler details into petowner
+--new ones:
+insert into petowner (ownername, ownerid, owneraddress, ownerphonenumber, year_of_birth)
+select name, id_travels, 'Unknown Address', 0, year_of_birth
+from travelers
+where id_travels not in (select ownerid
+                        from petowner);
+                        
+--existing ones:
+merge into petowner p using travelers t
+on (p.ownerid = t.id_travels)
+when matched then
+  update set p.year_of_birth = t.year_of_birth;
+                        
+--travelers_list update: connect trip to petowner
+--rename column
+alter table travelers_list
+rename column id_travels to ownerid;
+
+--drop both foreign keys bc we can't know which one it is
+alter table travelers_list
+drop constraint SYS_C009053; --changes every import
+
+--update foreign key constraints
+alter table TRAVELERS_LIST
+  add foreign key (ID_TRAVELS)
+  references PETOWNER (OWNERID) on delete cascade;
+
+--drop the irrelevant traveler table
+drop table travelers;
+--END--
+
+
+
+--check if worked:
+select * from staff;
+select * from guard;
+
+select count(*) from petowner;
+select count(*) from travelers;
+select * from travelers_list;
+```
 
 לפני ואחרי מיזוג המטיילים:
-![premerged](stage%204/premerged.png)
-![merged](stage%204/merged.png)
+![premerged](stage%204/screenshots/premerged.png)
+![merged](stage%204/screenshots/merged.png)
 
 ## מבטים
+מבט עבור ניהול פרטי טיפולים וסוגיהם.
+נועד עבור מנהלי המרפאה או צוות המרפאה שצריכים לנהל ולעיין במידע מפורט על פגישות וטיפולים שניתנו לחיות מחמד.
+ניתן להשתמש במבט זה ליצירת דוחות, ניהול חיובים, חישוב מחירים ועוד.
+```sql
+CREATE OR REPLACE VIEW AppointmentDetails AS
+SELECT 
+    p.ownerid as owner_id, a.AppDate, a.AppCost, p.petName, s.sName AS VetName,
+    t.TName AS TreatmentName, t.TPrice AS TreatmentPrice
+FROM Appointment a
+JOIN Pet p ON a.petId = p.petId
+JOIN treatmentType tt ON a.AppID = tt.AppID
+JOIN Treatment t ON tt.tID = t.tID;
+```
+![selectviewapp](stage%204/screenshots/selectviewapp.png)
+
+
+מבט עבור ניהול פרטי טיולים.
+נועד עבור צוות סוכנות הטיולים, לחשב מחירים ונסיעות, לתאם דרייברים בלי התנגשויות ועוד.
+```sql
+-- all trip details relevant to the trip agency
+CREATE OR REPLACE VIEW TripDetails AS
+SELECT 
+    t.name AS TripName, t.price AS TripPrice, t.trip_date,
+    tr.number_of_passengers, tr.driver,
+    d.name AS DestinationName
+FROM TRIP t
+JOIN TRANSPORTATION tr ON t.id_transportation = tr.id_transportation
+JOIN DESTINATIONS d ON t.id_trip = d.id_trip;
+```
+![selectviewtrip](stage%204/screenshots/selectviewtrip.png)
+
 
 ## שאילתות
 
+### על מבט באגף הוטרינריה
+```sql
+--- get total cost for owner per pet
+SELECT owner_id, petName, SUM(AppCost) AS TotalCost
+FROM AppointmentDetails
+GROUP BY petName, owner_id;
+```
+
+```sql
+--number of appointments of every treatment type
+SELECT TreatmentName, COUNT(*) AS NumberOfAppointments FROM AppointmentDetails GROUP BY TreatmentName;
+```
+
+### על מבט באגף הטיולים
+```sql
+-- trips that have over 50 travelers signed in
+SELECT * FROM TripDetails WHERE number_of_passengers > 45;
+```
+
+```sql
+-- the driver per trip and the designated date
+SELECT driver, trip_date
+FROM TripDetails
+ORDER BY driver, trip_date;
+```
+
+```sql
+--update trip cost
+UPDATE TRIP
+SET price = 300
+WHERE id_trip = 2;
+select * from trip;
+```

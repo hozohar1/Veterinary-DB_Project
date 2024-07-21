@@ -1,7 +1,7 @@
 
 --GUARD modifications--
---allow null in staff sbirthdate
---alter table staff modify (sbirthdate date null);
+allow null in staff sbirthdate
+alter table staff modify (sbirthdate date null);
 
 --merge guard details into staff
 merge into staff s using guard g
@@ -22,10 +22,10 @@ alter table guard drop column name;
 
 --END--
 -------------------------------------
---TRAVELER PETOWNER modifications--
 
---add traveler yearofbirth column to petowner
---alter table petowner add (year_of_birth number);
+--TRAVELER PETOWNER modifications--
+add traveler yearofbirth column to petowner
+alter table petowner add (year_of_birth number);
 
 --merge traveler details into petowner
 --new ones:
@@ -47,8 +47,8 @@ alter table travelers_list
 rename column id_travels to ownerid;
 
 --drop both foreign keys bc we can't know which one it is
---alter table travelers_list
---drop constraint SYS_C00722691;
+alter table travelers_list
+drop constraint SYS_C009053; --changes every import
 
 --update foreign key constraints
 alter table TRAVELERS_LIST
