@@ -6,15 +6,21 @@
    - [DSD](#DSD)
    - [תיאור תרשים](#תיאור-תרשים)
    - [טבלאות לפי שיטות הכנסה שונות](#טבלאות-לפי-שיטות-הכנסה-שונות)
+
 2. [שלב 2](#שלב-2)
    - [Select Queries](#select-queries)
    - [Delete Queries](#delete-queries)
    - [Update Queries](#update-queries)
    - [Constraints queries](#constraints-queries)
+
 3. [שלב 3](#שלב-3)
    - [Functions](#functions)
    - [Procedures](#procedures)
    - [Main programs](#main-programs)
+
+4. [שלב 4](#שלב-4)
+   - [ERD & DSD](#ERD)
+   - [Integration decisions](#החלטות-בשלב-האינטגרציה)
 
 # שלב 1
 
@@ -471,11 +477,16 @@ END;
 ![dsd2](stage%204/combinedDSD.png)
 
 ## החלטות בשלב האינטגרציה
-1. החלטנו למזג את PETOWNER וTRAVELERS לטבלה אחת PETOWNER הקיימת.
-   הוספנו לה את התכונה YEAR_OF_BIRTH שהייתה בטבלת המטיילים,
-   את התכונות של הת.ז. והשם של המטיילים הכנסו לבעלי החיות בהתאם.
-2. החלטנו שGUARD יירש מSTAFF.
-   את התכונות ת.ז. ושם של הGUARD הכנסו לטבלת הצוות בהתאם,
-   ודאגנו לקשר ירושה ע"י FOREIGN KEY לפי הת.ז.
-בהתנגשויות של ID דרסנו את הNAME לפי השם מהנתונים של האגף החדש.
+1. **מיזוג טבלאות PETOWNER ו-TRAVELERS**:
+    - החלטנו למזג את טבלת PETOWNER עם טבלת TRAVELERS.
+    - הוספנו את התכונה `YEAR_OF_BIRTH` שהייתה בטבלת TRAVELERS לטבלת PETOWNER.
+    - התכונות `ID` ו-`NAME` של TRAVELERS הועברו לטבלת PETOWNER בהתאם.
+    - בהתנגשויות של ID, השם (NAME) עודכן בהתאם לשם מהנתונים של האגף החדש.
+
+
+2. **ירושת GUARD מ-STAFF**:
+    - החלטנו שטבלת GUARD תירש מטבלת STAFF.
+    - התכונות `ID` ו-`NAME` של GUARD הועברו לטבלת STAFF.
+    - קישור הירושה נעשה באמצעות מפתח זר (FOREIGN KEY) לפי הת.ז.
+    - בהתנגשויות של ID, השם (NAME) עודכן בהתאם לשם מהנתונים של האגף החדש.
 
