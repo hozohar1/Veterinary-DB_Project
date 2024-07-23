@@ -3,7 +3,7 @@
 -- appointment details and cost, relevant to calc total per owner and keeping the treatments count in check
 CREATE OR REPLACE VIEW AppointmentDetails AS
 SELECT 
-    p.ownerid as owner_id, a.AppDate, a.AppCost, p.petName, s.sName AS VetName,
+    p.ownerid as owner_id, a.AppDate, a.AppCost, p.petName,
     t.TName AS TreatmentName, t.TPrice AS TreatmentPrice
 FROM Appointment a
 JOIN Pet p ON a.petId = p.petId
