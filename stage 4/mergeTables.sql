@@ -1,4 +1,3 @@
-
 --GUARD modifications--
 allow null in staff sbirthdate
 alter table staff modify (sbirthdate date null);
@@ -13,10 +12,10 @@ when not matched then
   values (g.id_guard, g.name, null);
 
 --add id constraint to be from staff table
-alter table guard 
+alter table guard
       add constraint fk_id foreign key (id_guard)
       references staff (sid);
-      
+     
 --remove redundant attribute
 alter table guard drop column name;
 
@@ -34,19 +33,19 @@ select name, id_travels, 'Unknown Address', 0, year_of_birth
 from travelers
 where id_travels not in (select ownerid
                         from petowner);
-                        
+                       
 --existing ones:
 merge into petowner p using travelers t
 on (p.ownerid = t.id_travels)
 when matched then
   update set p.year_of_birth = t.year_of_birth;
-                        
+                       
 --travelers_list update: connect trip to petowner
 --rename column
 alter table travelers_list
 rename column id_travels to ownerid;
 
---drop both foreign keys bc we can't know which one it is
+--drop foreign key constraint
 alter table travelers_list
 drop constraint SYS_C009053; --changes every import
 
