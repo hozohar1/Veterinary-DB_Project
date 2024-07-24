@@ -2,7 +2,7 @@
 ---------------
 -- appointment details and cost, relevant to calc total per owner and keeping the treatments count in check
 CREATE OR REPLACE VIEW AppointmentDetails AS
-SELECT 
+SELECT
     p.ownerid as owner_id, a.AppDate, a.AppCost, p.petName,
     t.TName AS TreatmentName, t.TPrice AS TreatmentPrice
 FROM Appointment a
@@ -12,7 +12,7 @@ JOIN Treatment t ON tt.tID = t.tID;
 
 -- all trip details relevant to the trip agency
 CREATE OR REPLACE VIEW TripDetails AS
-SELECT 
+SELECT
     t.name AS TripName, t.price AS TripPrice, t.trip_date,
     tr.number_of_passengers, tr.driver,
     d.name AS DestinationName
@@ -31,16 +31,10 @@ GROUP BY petName, owner_id;
 --number of appointments of every treatment type
 SELECT TreatmentName, COUNT(*) AS NumberOfAppointments FROM AppointmentDetails GROUP BY TreatmentName;
 
--- trips that have over 50 travelers signed in
+-- trips that have over 45 travelers signed in
 SELECT * FROM TripDetails WHERE number_of_passengers > 45;
 
 -- the driver per trip and the designated date
 SELECT driver, trip_date
 FROM TripDetails
 ORDER BY driver, trip_date;
-
---update trip cost
-UPDATE TRIP
-SET price = 300
-WHERE id_trip = 2;
-select * from trip;
